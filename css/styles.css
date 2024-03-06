@@ -13,8 +13,9 @@ h1 {
 }
 
 h2 {
-	font-size: calc(0.7rem + 1vw);
+	font-size: calc(0.5rem + 1vw);
 	padding-left: 10px;
+	flex-basis: calc(50%);
 }
 h3 {
 	padding-left: 10px;
@@ -27,6 +28,10 @@ p {
 	padding-left: 10px;
 	padding-right: 10px;
 	padding-bottom: 20px;
+}
+
+.texte {
+	width: 50%;
 }
 
 li {
@@ -82,6 +87,38 @@ img {
 	object-fit: cover;
 }
 
+.gallery__link {
+	position: relative;
+	display: block;
+	width: 100%;
+	height:100%;
+	overflow: hidden;
+}
+.gallery_overlay {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	background: rgba(0, 0, 0, 0.3);
+	font-size: 1rem;
+	color: #fff;
+	font-weight: 400;
+
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity .2s;
+}
+.gallery__link:hover .gallery_overlay {
+	opacity: 1;
+}
+
 /* INDEX */ 
 
 @media screen and (max-width:1000px) {
@@ -89,7 +126,6 @@ img {
 		display: flex;
 		flex-wrap: wrap;	
 	}
-
 	.gallery_item1,
 	.gallery_item2,
 	.gallery_item3,
@@ -103,7 +139,7 @@ img {
 		flex-basis: calc(50% - 8px);
 		}
 }
-@media screen and (max-width:650px) {
+@media screen and (max-width:700px) {
 	.gallery {
 		display: flex;
 		flex-wrap: wrap;
@@ -122,13 +158,13 @@ img {
 		}
 }
 
-/* TEUF 
+/* TEUF */
+
 @media screen and (max-width:1000px) {
 	.gallery {
 		display: flex;
 		flex-wrap: wrap;	
 	}
-
 	.teuf_1,
 	.teuf_2,
 	.teuf_3,
@@ -137,7 +173,11 @@ img {
 	.teuf_6,
 	.teuf_7,
 	.teuf_8,
-	 { 
+	.teuf_9,
+	.teuf_10,
+	.teuf_11,
+	.teuf_12,
+	.teuf_13 { 
 		flex-basis: calc(50% - 8px);
 		}
 }
@@ -146,22 +186,62 @@ img {
 		display: flex;
 		flex-wrap: wrap;
 	}
-	.gallery_item1,
-	.gallery_item2,
-	.gallery_item3,
-	.gallery_item4,
-	.gallery_item5,
-	.gallery_item6,
-	.gallery_item7,
-	.gallery_item8,
-	.gallery_item9,
-	.gallery_item10 { 
+	.teuf_1,
+	.teuf_2,
+	.teuf_3,
+	.teuf_4,
+	.teuf_5,
+	.teuf_6,
+	.teuf_7,
+	.teuf_8,
+	.teuf_9,
+	.teuf_10,
+	.teuf_11,
+	.teuf_12,
+	.teuf_13 { 
 		flex-basis: calc(100%);
 		}
 }
-*/
 
-/* GALLERY PAGE D'ACCUEIL */
+/* FIXEUSE */
+
+@media screen and (max-width:1000px) {
+	.gallery {
+		display: flex;
+		flex-wrap: wrap;	
+	}
+	.fixeuse_1,
+	.fixeuse_2,
+	.fixeuse_3,
+	.fixeuse_4,
+	.fixeuse_5,
+	.fixeuse_6 { 
+		flex-basis: calc(50% - 8px);
+		}
+}
+@media screen and (max-width:650px) {
+	.gallery {
+		display: flex;
+		flex-wrap: wrap;
+	}
+	.fixeuse_1,
+	.fixeuse_2,
+	.fixeuse_3,
+	.fixeuse_4,
+	.fixeuse_5,
+	.fixeuse_6 { 
+		flex-basis: calc(100%);
+		}
+}
+
+.fixeuse_glyphe {
+	padding-left: 10px;
+	padding-bottom: 20px;
+	font-family: BTPG fixeur;
+	font-size: calc(2.2vw + 4vw);
+}
+
+/* GALLERY INDEX */
 
 .gallery_item1 {
 	width: 1fr;
@@ -205,37 +285,6 @@ img {
 	grid-column: 1 / span 3;
 	grid-row: 11 / span 3;
 }
-.gallery__link {
-	position: relative;
-	display: block;
-	width: 100%;
-	height:100%;
-	overflow: hidden;
-}
-.gallery_overlay {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-
-	background: rgba(0, 0, 0, 0.3);
-	font-size: 1rem;
-	color: #fff;
-	font-weight: 400;
-
-	opacity: 0;
-	pointer-events: none;
-	transition: opacity .2s;
-}
-.gallery__link:hover .gallery_overlay {
-	opacity: 1;
-}
 
 /* GALLERY TEUF */
 
@@ -265,19 +314,61 @@ img {
 }
 .teuf_7 {
 	grid-column: 1 / span 1;
-	grid-row: 8 / span 3;
+	grid-row: 8 / span 4;
 }
 .teuf_13 {
 	grid-column: 2 / span 2;
-	grid-row: 8 / span 3;
+	grid-row: 8 / span 4;
 }
-.gallery_item10 {
+
+/* GALLERY FIXEUSE */
+
+.fixeuse_1 {
+	grid-column: 1 / span 2;
+	grid-row: 1 / span 3;
+}
+.fixeuse_2 {
 	grid-column: 3 / span 1;
+	grid-row: 3 / span 4;
+}
+.fixeuse_3 {
+	grid-column: 1 / span 1;
+	grid-row: 4 / span 3;
+}
+.fixeuse_4 {
+	grid-column: 2 / span 1;
+	grid-row: 4 / span 3;
+}
+.fixeuse_6 {
+	grid-column: 1 / span 1;
 	grid-row: 7 / span 4;
 }
-.gallery_item9 {
-	grid-column: 1 / span 3;
-	grid-row: 11 / span 3;
+.fixeuse_5 {
+	grid-column: 2 / span 2;
+	grid-row: 7 / span 5;
+}
+
+/* GALLERY TOTAL RECALL */
+
+.TR_1 {
+	grid-column: 1 / span 2;
+	grid-row: 1 / span 3;
+}
+.TR_2 {
+	grid-column: 3 / span 1;
+	grid-row: 2 / span 2;
+}
+.TR_3 {
+	grid-column: 1 / span 2;
+	grid-row: 8 / span 3;
+}
+.TR_4 {
+	grid-column: 1 / span 1;
+	grid-row: 4 / span 4;
+}
+.TR_5 {
+	grid-column: 2 / span 2;
+	grid-row: 4 / span 4;
 }
 
 footer {
