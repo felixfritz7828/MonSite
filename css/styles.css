@@ -35,7 +35,11 @@
 	padding: 0;
 	margin: 0;
 }
-
+@font-face {
+	font-family: IBM Plex Mono Italic;
+	src: url('../typos/IBMPlexMono-Italic.otf');
+	font-style: normal;
+}
 @font-face {
 	font-family: IBM Plex Mono;
 	src: url('../typos/IBMPlexMono-Regular.otf');
