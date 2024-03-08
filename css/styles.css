@@ -4,7 +4,7 @@
 
 @font-face {
 	font-family: IBM Plex Mono;
-	src: url('typos/IBMPlexMono-Regular.otf');
+	src: url('../typos/IBMPlexMono-Regular.otf');
 	font-style: normal;
 }
 .IBMPlexMono {
@@ -12,7 +12,7 @@
 }
 @font-face {
 	font-family: BTPG;
-	src: url('typos/BTPG-fixeur.ttf');
+	src: url('../typos/BTPG-fixeur.ttf');
 	font-style: normal;
 }
 .BTPG {
