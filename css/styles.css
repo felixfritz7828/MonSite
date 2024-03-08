@@ -349,6 +349,8 @@ img {
 		}
 }
 
+/* POPU */
+
 @media screen and (max-width:1200px) {
 	.gallery {
 		display: flex;
@@ -363,6 +365,20 @@ img {
 		}
 }
 
+/* SENS */
+
+@media screen and (max-width:1200px) {
+	.gallery {
+		display: flex;
+		flex-wrap: wrap;	
+	}
+	.sens_1,
+	.sens_2,
+	.sens_3,
+	.sens_4 { 
+		flex-basis: calc(100%);
+		}
+}
 /* GALLERY INDEX */
 
 .gallery_item1 {
