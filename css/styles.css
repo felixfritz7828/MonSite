@@ -382,7 +382,7 @@ img {
 		}
 }
 
-/* SENS */
+/* JPOV */
 
 @media screen and (max-width:1200px) {
 	.gallery {
@@ -393,6 +393,26 @@ img {
 	.jpov_2,
 	.jpov_3,
 	.jpov_4 { 
+		flex-basis: calc(100%);
+		}
+}
+
+/* RIDAX */
+
+@media screen and (max-width:1200px) {
+	.gallery {
+		display: flex;
+		flex-wrap: wrap;	
+	}
+	.ridax_1,
+	.ridax_3,
+	.ridax_4,
+	.ridax_5,
+	.ridax_6,
+	.ridax_7,
+	.ridax_8,
+	.ridax_9,
+	.ridax_10 { 
 		flex-basis: calc(100%);
 		}
 }
@@ -690,6 +710,45 @@ img {
 .jpov_4 {
 	grid-column: 3 / span 1;
 	grid-row: 7 / span 6;
+}
+
+/* GALLERY LMSR */
+
+.ridax_1 {
+	grid-column: 1 / span 2;
+	grid-row: 1 / span 3;
+}
+.ridax_3 {
+	grid-column: 1 / span 1;
+	grid-row: 4 / span 2;
+}
+.ridax_4 {
+	grid-column: 1 / span 1;
+	grid-row: 10 / span 4;
+}
+.ridax_5 {
+	grid-column: 2 / span 1;
+	grid-row: 4 / span 2;
+}
+.ridax_6 {
+	grid-column: 1 / span 1;
+	grid-row: 6 / span 2;
+}
+.ridax_7 {
+	grid-column: 1 / span 1;
+	grid-row: 8 / span 2;
+}
+.ridax_8 {
+	grid-column: 2 / span 2;
+	grid-row: 9 / span 3;
+}
+.ridax_9 {
+	grid-column: 2 / span 2;
+	grid-row: 6 / span 3;
+}
+.ridax_10 {
+	grid-column: 3 / span 1;
+	grid-row: 2 / span 4;
 }
 
 footer {
