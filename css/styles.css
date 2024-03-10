@@ -55,6 +55,7 @@
 }
 .BTPG {
 	padding-left: 10px;
+	margin-bottom: 20px;
 	font-family: BTPG;
 	font-size: calc(2.5vw + 3vw);
 }
