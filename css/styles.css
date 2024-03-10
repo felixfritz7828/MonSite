@@ -78,7 +78,15 @@ h2 {
 h3 {
 	padding-left: 10px;
 	padding-right: 10px;
-
+}
+.italic {
+	font-family: IBM Plex Mono italic;
+	font-style: normal;
+	font-size: calc(0.4rem + 0.5vw);
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	
 }
 p {
 	font-size: calc(0.4rem + 0.5vw);
