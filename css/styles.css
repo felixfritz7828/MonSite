@@ -268,7 +268,8 @@ img {
 	.teuf_11,
 	.teuf_12,
 	.teuf_13,
-	.teuf_14 { 
+	.teuf_14,
+	.teuf_15 { 
 		flex-basis: calc(100%);
 		}
 }
