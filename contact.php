@@ -29,7 +29,7 @@ session_start();
 		$send = mail($to,$subject,$message,$headers);
 
 		// vérification de l'envoi //
-		if(!$send){
+		if($send){
 			$_SESSION['succes_message'] = "message envoyé";
 
 		}else {
