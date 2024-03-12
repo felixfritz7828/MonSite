@@ -47,6 +47,8 @@ html {
 	background: white;
 	color: black;
 	display: flex;
+	text-align: center;
+	font-size: 20px;
 	align-items: center;
 	justify-content: center;
 	border-radius: 20%;
@@ -60,6 +62,8 @@ html {
 }
 .icone {
     width: 50px;
+	align-items: center;
+	justify-content: center;
 }
 
 @font-face {
