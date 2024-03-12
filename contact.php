@@ -4,7 +4,8 @@ session_start();
 		extract($_POST);
 	if(isset($username) && $username != "" &&
 	   isset($email) && $email != "" &&
-	   isset($phone) && $phone != ""){
+	   isset($phone) && $phone != "" &&
+	   isset($message) && $message != "" )){
 
 		// envoyé le mail //
 		// mon mail //
