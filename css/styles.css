@@ -39,60 +39,6 @@ html {
 	scroll-behavior: smooth;
 }
 
-.request_message {
-	margin-left: 10px;
-	background-color: none;
-	text-align: center;
-	color: green;
-	font-size: calc(0.4rem + 0.5vw);
-	padding: 10px;
-	border-radius: 4px;
-	animation: anime 0.5s ease-out;
-}
-
-/* animation */
-@keyframes anime {
-	from {
-		transform: translateY(-20px);
-	}
-}
-
-form {
-	display: flex;
-	flex-direction: column;
-	padding-left: 10px;
-	font-size: calc(0.4rem + 0.5vw);
-}
-
-label {
-	font-size: calc(0.4rem + 0.5vw);
-	font-weight: 400;
-	margin-bottom: 3px;
-	margin-top: 8px;
-}
-
-input, textarea {
-	padding: 4px;
-	resize: none;
-	outline: 0;
-	border: 1px solid black;
-	border-radius: 4px;
-}
-
-button {
-	background-color: ghostwhite;
-	color: black;
-	border: 1px solid black;
-	border-radius: 4px;
-	cursor: pointer;
-	margin-top: 10px;
-	padding: 10px;
-	transition: 0.5s;
-}
-
-button:hover {
-	transform: scale(1.02);
-}
 .to-top {
 	width: 50px;
 	height: 50px;
@@ -155,7 +101,6 @@ h2 {
 	font-family: IBM Plex Mono italic;
 	font-size: calc(0.4rem + 0.8rem);
 	padding-left: 8px;
-	padding-top: spx;
 	flex-basis: calc(50%);
 }
 h3 {
