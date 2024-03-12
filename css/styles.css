@@ -39,7 +39,7 @@ html {
 	scroll-behavior: smooth;
 }
 
-.to-top {
+.btn {
 	width: 50px;
 	height: 50px;
 	text-decoration: none;
@@ -55,14 +55,13 @@ html {
 	position: fixed;
 	bottom: 0px;
 	right: 20px;
-	opacity: 0;
-	transition: all .6s;
+	opacity: 0.6;
+	cursor: pointer;
+}
+.icone {
+    width: 50px;
 }
 
-.to-top.active {
-	bottom: 0px;
-	opacity: 1;
-}
 @font-face {
 	font-family: "IBM Plex Mono italic";
 	src: url('../typos/IBMPlexMono-Italic.otf');
