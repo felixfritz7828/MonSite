@@ -121,7 +121,7 @@ session_start();
 		// afficher le message de succès //
 		if(isset($_SESSION['succes_message'])) { ?>
 			<p class="request_message" style="color:green">
-				<?=info?>
+				<?=$_SESSION['succes_message']?>
 			</p>
 			<?php
 			}
