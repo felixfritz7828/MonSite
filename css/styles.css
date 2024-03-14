@@ -177,8 +177,11 @@ img {
 
 .mySlides{
 	display: none;
+	scroll-snap-align: start;
 }
 .slideshow-container {
+	scroll-snap-type: x mandatory;
+	scroll-padding: 0 24px;
 	max-width: 100%;
 	position: relative;
 	margin: 8px;
