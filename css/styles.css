@@ -175,7 +175,7 @@ img {
 	display: inline-block;
 }
 
-.mySlides{
+/* .mySlides{
 	display: none;
 	scroll-snap-align: start;
 }
@@ -211,6 +211,9 @@ img {
 	margin-top: 10px;
 	font-size: 10px;
 }
+
+*/
+
 .gallery {
 	max-width: screen;
 	margin: 0;
