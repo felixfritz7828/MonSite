@@ -35,10 +35,17 @@
 	padding: 0;
 	margin: 0;
 }
+
 html {
 	scroll-behavior: smooth;
 }
-
+.form {
+	width: 100%;
+	padding: 10px;
+}
+input, textarea {
+	width: 100%;
+}
 .btn {
 	width: 50px;
 	height: 50px;
@@ -168,6 +175,39 @@ img {
 	display: inline-block;
 }
 
+.mySlides{
+	display: none;
+}
+.slideshow-container {
+	max-width: 100%;
+	position: relative;
+	margin: 10px;
+}
+.prev, .next{
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	width: auto;
+	padding: 10px;
+	margin-top: -22px;
+	transition: 0.6s ease;
+	border-radius: 0 3px 3px 0;
+	user-select: none;
+}
+.next{
+	right: 0;
+	border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+	background-color: black;
+}
+.numbertext {
+	font-size: calc(0.4rem + 0.5vw);
+	margin-bottom: 6px;
+	margin-top: 10px;
+	font-size: 10px;
+}
 .gallery {
 	max-width: screen;
 	margin: 0;
