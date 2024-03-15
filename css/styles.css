@@ -39,15 +39,15 @@
 .memory {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	justify-content: auto;
+	align-items: auto;
 	min-height: 100vh;
 	padding: 10px;
 }
 
 .wrapper {
 	display: flex;
-	grid-gap: 10px;
+	grid-gap: 0px;
 	max-width: 1500px;
 	width: 100%;
 	overflow-x: auto;
@@ -58,7 +58,7 @@
 }
 
 .slider {
-	min-width: calc(100%);
+	min-width: calc(80%);
 	max-height: calc(100%);
 	aspect-ratio: 1 / 1;
 	background: none;
@@ -202,7 +202,11 @@ nav ul {
 	display: grid;
 	padding: 0;
 }
-
+.chemin {
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-bottom: 4px;
+}
 img {
 	max-width: 100%;
 	height: auto;
@@ -271,7 +275,8 @@ img {
 	.gallery_item7,
 	.gallery_item8,
 	.gallery_item9,
-	.gallery_item10 { 
+	.gallery_item10,
+	.gallery_item11 { 
 		flex-basis: calc(50% - 8px);
 		}
 }
@@ -289,7 +294,8 @@ img {
 	.gallery_item7,
 	.gallery_item8,
 	.gallery_item9,
-	.gallery_item10 { 
+	.gallery_item10,
+	.gallery_item11 { 
 		flex-basis: calc(100%);
 		}
 }
@@ -539,8 +545,12 @@ img {
 	grid-row: 7 / span 4;
 }
 .gallery_item9 {
-	grid-column: 1 / span 3;
-	grid-row: 11 / span 3;
+	grid-column: 1 / span 2;
+	grid-row: 11 / span 2;
+}
+.gallery_item11 {
+	grid-column: 3 / span 1;
+	grid-row: 11 / span 1;
 }
 
 /* GALLERY TEUF */
