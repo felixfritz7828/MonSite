@@ -1,27 +1,40 @@
-var slideChaix = 1;
-showSlides(slideChaix);
+const wrapper = document.querySelector('.wrapper')
 
-function plusSlides(n) {
-    showSlides(slideChaix += n);
-}
+let pressed = false
+let startX = 0
 
-function currentSlide(n) {
-    showSlides(slideChaix = n);
-}
+wrapper.addEventListener('mousedown', function (e) {
+    pressed = true
+    startX = e.clientX
+    this.style.cursor = 'grabbing'
+})
 
-function showSlides(n) {
-    var i;
-    var slides = document.getElementsByClassName("mySlides");
-    var dots = document.getElementsByClassName("dot");
-    if (n > slides.length) { slideChaix = 1 }
-    if (n < 1) { slideChaix = slides.length }
-    for ( i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
+
+wrapper.addEventListener('mouseleave', function (e) {
+    pressed = false
+})
+
+window.addEventListener('mouseup', function (e) {
+    pressed = false
+    wrapper.style.cursor = 'grab'
+})
+
+wrapper.addEventListener('mousemove', function (e) {
+    if(!pressed) {
+        return
     }
-    for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
-        }
-        slides[slideChaix - 1].style.display = "block";
-        dots[slideChaix - 1].className += "active";
-}
 
+    this.scrollLeft += startX - e.clientX
+})
+
+const btn = document.querySelector('.btn');
+
+btn.addEventListener('click', () => {
+
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth"
+    })
+
+})
