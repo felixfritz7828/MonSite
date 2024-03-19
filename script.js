@@ -26,4 +26,3 @@ wrapper.addEventListener('mousemove', function (e) {
 
     this.scrollLeft += startX - e.clientX
 })
-
