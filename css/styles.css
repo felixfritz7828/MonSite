@@ -200,7 +200,7 @@ nav ul {
 	display: flex;
 	justify-content: space-between;
 }
- body {
+body {
 	display: grid;
 	padding: 0;
 }

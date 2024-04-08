@@ -12,6 +12,7 @@
 		<link rel="mask-icon" href="favicon/studio/safari-pinned-tab.svg" color="#56afc9">
 		<meta name="msapplication-TileColor" content="#ff0000">
 		<meta name="theme-color" content="#ffffff">
+		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="css/styles.css">
 	</head>
 		<header class="IBMPlexMono">
@@ -27,11 +28,17 @@
 			</nav>
 		</header>
 	<body class="IBMPlexMono">
+		<div data-aos="fade-up" data-aos-duration="1000">
 		<img src="img/LOGO.png" width="100%" height="100%" alt="">
+		</div>
 		<div class="btn">
 			<div class="icone">↑</div>
 		</div>
 		<script src="anim.js"></script>
+		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+            <script>
+                AOS.init();
+              </script>
 	</body>
 	<footer>
 		&#169; Félix Fritz - 2024
