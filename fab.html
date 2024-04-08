@@ -12,6 +12,7 @@
         <link rel="mask-icon" href="favicon/ff/safari-pinned-tab.svg" color="#56afc9">
         <meta name="msapplication-TileColor" content="#000000">
         <meta name="theme-color" content="#ffffff">
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="css/styles.css">
 	</head>
 
@@ -32,29 +33,35 @@
 		</header>
         <body class="IBMPlexMono">
             <div class="texte">	
+                <div data-aos="fade-down" data-aos-duration="1000">
                 <h1>
                     Typtile
                 </h1>
+                </div>
+                <div data-aos="fade-left" data-aos-duration="1000">
                 <h2>
                     2022
                 </h2>
+                </div>
+                <div data-aos="fade-right" data-aos-duration="1000">
                     <p> En&nbspcollaboration avec&nbspl'entreprise «&nbsples&nbspCéramiques&nbspdu&nbspBeaujolais&nbsp»<br>
                         <br>
                         Visuel exposé lors de&nbspla&nbsp12e&nbspBiennale Internationale Design de&nbspSaint-Étienne 2022, au&nbspsein&nbspde&nbspl'exposition «&nbspFabÉcole&nbsp». Proposition d'un&nbspcarrelage typographique réalisé par&nbspl'assemblage de&nbsp4&nbspcarreaux de&nbspcarrelage différents.
                     </p>
+                </div>
             </div>
 
             <div class="gallery">
-                <div class="fab_1">
+                <div class="fab_1" data-aos="fade-up" data-aos-duration="1000">
                     <img src="img/fab4.jpg" alt="">
                 </div>
-                <div class="fab_2">
+                <div class="fab_2" data-aos="fade-left" data-aos-duration="1000">
                     <img src="img/fab2.jpg" alt="">
                 </div>
-                <div class="fab_3">
+                <div class="fab_3" data-aos="fade-right" data-aos-duration="1000">
                     <img src="img/fab.jpg" alt="">
                 </div>
-                <div class="fab_4">
+                <div class="fab_4" data-aos="fade-up" data-aos-duration="1000">
                     <img src="img/fab3.jpg" alt="">
                 </div>
             </div>
@@ -62,6 +69,10 @@
 				<div class="icone">↑</div>
             </div>
             <script src="anim.js"></script>
+            <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+            <script>
+                AOS.init();
+              </script>
         </body>
 
         <footer>
