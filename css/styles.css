@@ -69,7 +69,9 @@
 	scroll-snap-align: start;
 	user-select: none;
 }
-
+main {
+	width: 100%;
+}
 html {
 	scroll-behavior: smooth;
 }
@@ -259,6 +261,7 @@ img {
 .gallery__link:hover .gallery_overlay {
 	opacity: 1;
 }
+
 
 /* INDEX */ 
 
