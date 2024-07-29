@@ -262,7 +262,9 @@ img {
 	opacity: 1;
 }
 
-
+.toro {
+	background-color: #FFF8EC;
+}
 
 /* INDEX */ 
 
@@ -281,7 +283,9 @@ img {
 	.gallery_item8,
 	.gallery_item9,
 	.gallery_item10,
-	.gallery_item11 { 
+	.gallery_item11,
+	.gallery_item12,
+	.gallery_item13 { 
 		flex-basis: calc(50% - 8px);
 		}
 }
@@ -300,7 +304,31 @@ img {
 	.gallery_item8,
 	.gallery_item9,
 	.gallery_item10,
-	.gallery_item11 { 
+	.gallery_item11,
+	.gallery_item12,
+	.gallery_item13 { 
+		flex-basis: calc(100%);
+		}
+}
+
+/* TORO */
+
+@media screen and (max-width:800px) {
+	.gallery {
+		display: flex;
+		flex-wrap: wrap;
+	}
+	.toro_1,
+	.toro_2,
+	.toro_3,
+	.toro_4,
+	.toro_5,
+	.toro_6,
+	.toro_7,
+	.toro_8,
+	.toro_9,
+	.toro_10,
+	.toro_11 { 
 		flex-basis: calc(100%);
 		}
 }
@@ -556,32 +584,33 @@ img {
 
 /* GALLERY INDEX */
 
+.gallery_item13 {
+	grid-column: 1 / span 1;
+	grid-row: 1 / span 3;
+}
 .gallery_item12 {
-	width: 1fr;
-	grid-column: span 1;
-	grid-row: span 3;
+	grid-column: 2 /span 1;
+	grid-row: 1 / span 3;
 }
 .gallery_item1 {
-	width: 1fr;
-	grid-column: 2 / span 1;
-	grid-row: span 3;
+	grid-column: 3 / span 1;
+	grid-row: 1 / span 3;
 }
 .gallery_item2 {
-	width: 1fr;
 	grid-column: 3 / span 1;
-	grid-row: span 3;
+	grid-row: 4 / span 1;
 }
 .gallery_item5 {
 	grid-column: 1 / span 2;
-	grid-row: span 2;
+	grid-row: 5 / span 1;
 }
 .gallery_item3 {
-	grid-column: 3 / span 1;
-	grid-row: 5 / span 1;
+	grid-column: 1 / span 2;
+	grid-row: 4 / span 1;
 }
 .gallery_item4 {
 	grid-column: 3 / span 1;
-	grid-row: 4 / span 1;
+	grid-row: 5 / span 1;
 }
 .gallery_item6 {
 	grid-column: 2 / span 2;
@@ -607,6 +636,54 @@ img {
 	grid-column: 1 / span 2;
 	grid-row: 11 / span 2;
 }
+
+/* GALLERY TORO */
+
+.toro_1 {
+	grid-column: 1 / span 3;
+	grid-row: 3 / span 2;
+}
+.toro_2 {
+	grid-column: 1 / span 2;
+	grid-row: 1 / span 2;
+}
+.toro_3 {
+	grid-column: 1 / span 1;
+	grid-row: 5 / span 1;
+}
+.toro_4 {
+	grid-column: 2 / span 1;
+	grid-row: 5 / span 1;
+}
+.toro_5 {
+	grid-column: 3 / span 1;
+	grid-row: 5 / span 1;
+}
+.toro_6 {
+	grid-column: 1 / span 1;
+	grid-row: 6 / span 1;
+}
+.toro_7 {
+	grid-column: 2 / span 1;
+	grid-row: 6 / span 1;
+}
+.toro_8  {
+	grid-column: 3 / span 1;
+	grid-row: 6 / span 1;
+}
+.toro_9 {
+	grid-column: 1 / span 1;
+	grid-row: 7 / span 1;
+}
+.toro_10 {
+	grid-column: 2 / span 1;
+	grid-row: 7 / span 1;
+}
+.toro_11 {
+	grid-column: 3 / span 1;
+	grid-row: 7 / span 1;
+}
+
 
 /* GALLERY TEUF */
 
