@@ -289,7 +289,8 @@ img {
 		flex-basis: calc(50% - 8px);
 		}
 }
-@media screen and (max-width:800px) {
+
+/* @media screen and (max-width:800px) {
 	.gallery {
 		display: flex;
 		flex-wrap: wrap;
@@ -309,7 +310,7 @@ img {
 	.gallery_item13 { 
 		flex-basis: calc(100%);
 		}
-}
+}*/
 
 /* TORO */
 
