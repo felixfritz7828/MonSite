@@ -36,6 +36,10 @@
 	margin: 0;
 }
 
+.container {
+	display: flex;
+
+}
 .memory {
 	display: flex;
 	flex-direction: column;
@@ -280,7 +284,8 @@ img {
 	.jardins_5,
 	.jardins_6,
 	.jardins_7,
-	.jardins_8 { 
+	.jardins_8,
+	.jardins_9 { 
 		flex-basis: calc(50% - 8px);
 		}
 }
@@ -296,7 +301,8 @@ img {
 	.jardins_5,
 	.jardins_6,
 	.jardins_7,
-	.jardins_8 { 
+	.jardins_8,
+	.jardins_9 { 
 		flex-basis: calc(100%);
 		}
 }
