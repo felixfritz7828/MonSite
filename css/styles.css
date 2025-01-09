@@ -285,7 +285,8 @@ img {
 	.jardins_6,
 	.jardins_7,
 	.jardins_8,
-	.jardins_9 { 
+	.jardins_9,
+	.jardins_10 { 
 		flex-basis: calc(50% - 8px);
 		}
 }
@@ -302,7 +303,8 @@ img {
 	.jardins_6,
 	.jardins_7,
 	.jardins_8,
-	.jardins_9 { 
+	.jardins_9,
+	.jardins_10 { 
 		flex-basis: calc(100%);
 		}
 }
@@ -722,6 +724,10 @@ img {
 .jardins_9  {
 	grid-column: 3 / span 1;
 	grid-row: 5 / span 1;
+}
+.jardins_10  {
+	grid-column: 3 / span 1;
+	grid-row: 6 / span 1;
 }
 
 /* GALLERY TORO */
