@@ -88,8 +88,6 @@
 }
 
 .carousel {
-  min-width: calc(80%);
-  max-height: calc(100%);
   overflow-x: auto;
   white-space: nowrap;
   padding: 20px;
