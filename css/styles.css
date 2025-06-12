@@ -61,18 +61,7 @@
 	scroll-behavior: smooth;
 	scrollbar-width: none;
 }
-.wrapper2 {
-	display: flex;
-	grid-gap: 8px;
-	max-width: 1500px;
-	max-height: 800px;
-	width: 100%;
-	overflow-x: auto;
-	scroll-snap-type: x;
-	cursor: grab;
-	scroll-behavior: smooth;
-	scrollbar-width: auto;
-}
+
 
 .slider {
 	min-width: calc(80%);
@@ -86,18 +75,57 @@
 	scroll-snap-align: start;
 	user-select: none;
 }
-.slider2 {
-	min-width: calc(80%);
-	max-height: calc(100%);
-	aspect-ratio: 1 / 1;
-	background: none;
+
+
+
+.wrapper2 {
 	display: flex;
-	justify-content: flex-start;
-	align-items: flex-start;
-	color: #fff;
-	scroll-snap-align: start;
-	user-select: none;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	scroll-behavior: smooth;
+	gap: 10px;
+	padding: 10px;
+	scrollbar-width: auto;
 }
+.wrapper2::-webkit-scrollbar {
+	display: auto;
+}
+
+.slider2 {
+	flex: 0 0 auto;
+	scroll-snap-align: start;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.slider2 img {
+	height: auto;
+	width: auto;
+	max-height: 100%;
+	max-width: 100%;
+	display: block;
+}
+
+/* 💻 Desktop : hauteur max 100px, images non rognées */
+@media screen and (min-width: 769px) {
+	.wrapper2 {
+		height: 300px;
+	}
+	.slider2 {
+		height: 100%;
+	}
+}
+
+/* 📱 Mobile : chaque image occupe 85% de la largeur de l'écran */
+@media screen and (max-width: 768px) {
+	.wrapper2,
+	.slider2 {
+		max-height: 200px;
+	}
+}
+
+
 main {
 	width: 100%;
 }
