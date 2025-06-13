@@ -185,7 +185,8 @@ input, textarea {
 	font-style: normal;
 }
 .IBMPlexMono {
-	font-family: IBM Plex Mono;
+	font-family: 'IBM Plex Mono', monospace;
+	font-size: 1rem;
 }
 @font-face {
 	font-family: "BTPG";
@@ -268,6 +269,8 @@ nav ul {
 body {
 	display: grid;
 	padding: 0;
+	font-family: 'IBM Plex Mono', monospace;
+	font-size: 1rem; 
 }
 .chemin {
 	padding-left: 8px;
