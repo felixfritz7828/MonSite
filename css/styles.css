@@ -216,8 +216,10 @@ h2 {
 	flex-basis: calc(50%);
 }
 h3 {
+	padding-top: 10px;
 	padding-left: 8px;
 	padding-right: 8px;
+	padding-bottom: 10px;
 }
 .italic {
 	font-family: IBM Plex Mono italic;
@@ -378,7 +380,8 @@ img {
 	}
 	.equus_0,
 	.equus_1,
-	.equus_2 { 
+	.equus_2,
+	.equus_3 { 
 		flex-basis: calc(50% - 8px);
 		}
 }
@@ -390,7 +393,8 @@ img {
 	}
 	.equus_0,
 	.equus_1,
-	.equus_2 {
+	.equus_2,
+	.equus_3 {
 		flex-basis: calc(100%);
 		}
 }
@@ -891,6 +895,10 @@ img {
 .equus_2 {
 	grid-column: 3 / span 1;
 	grid-row: 1 / span 2;
+}
+.equus_3 {
+	grid-column: 1 / span 1;
+	grid-row: 3 / span 2;
 }
 
 /* GALLERY JARDINS */
