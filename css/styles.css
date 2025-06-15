@@ -82,7 +82,7 @@
 
 
 .carousel {
-  width: 100%;
+  width: screen;
   max-width: 1224px;
   margin: 10px;
   align-items: center;
