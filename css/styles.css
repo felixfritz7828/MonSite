@@ -86,9 +86,8 @@
   max-width: 1224px;
   margin: 10px;
   align-items: center;
-  justify-content: center;
   height: auto;
-  overflow-x: scroll;
+  overflow-x: auto;
   white-space: nowrap;
   margin-bottom: 40px;
   scrollbar-width: thin;
