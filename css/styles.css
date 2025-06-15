@@ -84,7 +84,7 @@
 .carousel {
   width: 100%;
   max-width: 1224px;
-  margin: auto;
+  margin: 10px;
   align-items: center;
   height: auto;
   overflow-x: auto;
