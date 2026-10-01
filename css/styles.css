@@ -170,10 +170,17 @@ img {
     position: absolute;
 }
 
-.gallery img {
+.gallery img,
+.gallery video {
     display: block;
     width: 100%;
     height: auto;
+}
+
+/* Ratio de secours avant les métadonnées, puis proportions réelles de la vidéo. */
+.gallery video {
+    aspect-ratio: var(--video-ratio, 16 / 9);
+    object-fit: contain;
 }
 
 /* Recadrage centré, limité aux dernières photos de chaque colonne. */

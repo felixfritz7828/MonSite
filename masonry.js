@@ -10,7 +10,7 @@
             items.sort((a, b) => (Number(b.dataset.year) || 0) - (Number(a.dataset.year) || 0));
             items.forEach(item => gallery.appendChild(item));
         }
-        const photos = items.map(item => item.querySelector('img'));
+        const media = items.map(item => item.querySelector('img, video'));
 
         let scheduled = false;
         let lastWidth = gallery.clientWidth;
@@ -31,16 +31,24 @@
 
             // Toujours repartir des dimensions originales, même après un recadrage.
             const entries = items.map((item, index) => {
-                const image = photos[index];
-                const ready = !!(image?.naturalWidth && image?.naturalHeight);
+                const element = media[index];
+                const video = element?.tagName === 'VIDEO';
+                const image = video ? null : element;
+                const originalWidth = video ? element.videoWidth : image?.naturalWidth;
+                const originalHeight = video ? element.videoHeight : image?.naturalHeight;
+                const ready = !!(originalWidth && originalHeight);
+                if (video) {
+                    if (ready) element.style.setProperty('--video-ratio', `${originalWidth} / ${originalHeight}`);
+                    else element.style.removeProperty('--video-ratio');
+                }
                 if (image && !ready) {
                     image.classList.remove('is-cropped');
                     image.style.removeProperty('--crop-height');
                 }
                 const height = ready
-                    ? width * image.naturalHeight / image.naturalWidth
+                    ? width * originalHeight / originalWidth
                     : item.getBoundingClientRect().height;
-                return {item, image, ready, height, renderedHeight: height, top: 0};
+                return {item, image, video, ready, height, renderedHeight: height, top: 0};
             });
             const arrange = order => {
                 const heights = Array(count).fill(padding[2]);
@@ -52,11 +60,14 @@
                     tails[column] = photo;
                     return photo;
                 });
-                const lastPhotos = tails.filter(entry => entry?.ready);
-                if (lastPhotos.length > 1 && cropLimit > 0) {
-                    const lower = Math.max(...lastPhotos.map(entry => entry.top + entry.height * keep));
-                    const upper = Math.min(...lastPhotos.map(entry => entry.top + entry.height / keep));
-                    const ends = lastPhotos.map(entry => entry.top + entry.height).sort((a, b) => a - b);
+                const occupied = tails.filter(Boolean);
+                const lastPhotos = occupied.filter(entry => entry.ready && entry.image);
+                if (lastPhotos.length && occupied.length > 1 && cropLimit > 0) {
+                    // Les vidéos gardent leur hauteur entière ; seules les photos peuvent être recadrées.
+                    const canCrop = entry => entry.ready && entry.image;
+                    const lower = Math.max(...occupied.map(entry => entry.top + entry.height * (canCrop(entry) ? keep : 1)));
+                    const upper = Math.min(...occupied.map(entry => entry.top + entry.height / (canCrop(entry) ? keep : 1)));
+                    const ends = occupied.map(entry => entry.top + entry.height).sort((a, b) => a - b);
                     const median = (ends[Math.floor((ends.length - 1) / 2)] + ends[Math.floor(ends.length / 2)]) / 2;
                     // Si les intervalles ne se croisent pas, combler au mieux les colonnes courtes.
                     const target = lower > upper ? lower : clamp(median, lower, upper);
@@ -98,6 +109,8 @@
                     if (moves === 2) return;
                     for (let i = 0; i < order.length - 1; i++) {
                         const a = tail[order[i]], b = tail[order[i + 1]];
+                        // Préserver la position des vidéos dans l'ordre d'insertion.
+                        if (a.video || b.video) continue;
                         if (gallery.hasAttribute('data-projects') && a.item.dataset.year !== b.item.dataset.year) continue;
                         const next = [...order];
                         [next[i], next[i + 1]] = [next[i + 1], next[i]];
@@ -138,9 +151,15 @@
             observer.observe(gallery);
             items.forEach(item => observer.observe(item));
         }
-        gallery.querySelectorAll('img').forEach(image => {
-            image.addEventListener('load', schedule);
-            image.addEventListener('error', schedule);
+        gallery.querySelectorAll('img, video').forEach(element => {
+            if (element.tagName === 'VIDEO') {
+                element.addEventListener('loadedmetadata', schedule);
+                element.addEventListener('resize', schedule);
+                element.addEventListener('emptied', schedule);
+            } else {
+                element.addEventListener('load', schedule);
+            }
+            element.addEventListener('error', schedule);
         });
         window.addEventListener('resize', schedule);
         schedule();
