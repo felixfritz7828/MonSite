@@ -20,12 +20,12 @@
             const count = Number(styles.getPropertyValue('--gallery-columns')) || 3;
             const cropLimit = clamp(Number(styles.getPropertyValue('--gallery-crop-limit').trim() || 0.15), 0, 0.3);
             const keep = 1 - cropLimit;
-            const gap = parseFloat(styles.getPropertyValue('--image-gap')) || 5;
-            const availableWidth = gallery.clientWidth - 16;
+            const gap = parseFloat(styles.getPropertyValue('--image-gap')) || 6;
+            const padding = ['paddingLeft', 'paddingRight', 'paddingTop', 'paddingBottom']
+                .map(side => parseFloat(styles[side]) || 0);
+            const availableWidth = gallery.clientWidth - padding[0] - padding[1];
             if (availableWidth <= 0) return;
             const width = (availableWidth - gap * (count - 1)) / count;
-            const heights = Array(count).fill(0);
-            const tails = Array(count).fill(null);
             gallery.classList.add('is-masonry');
             items.forEach(item => {item.style.width = `${width}px`;});
 
@@ -42,29 +42,74 @@
                     : item.getBoundingClientRect().height;
                 return {item, image, ready, height, renderedHeight: height, top: 0};
             });
-            entries.forEach(entry => {
-                const column = heights.indexOf(Math.min(...heights));
-                entry.top = heights[column];
-                entry.item.style.left = `${8 + column * (width + gap)}px`;
-                entry.item.style.top = `${entry.top}px`;
-                heights[column] += entry.height + gap;
-                tails[column] = entry;
-            });
-
-            // Rapprocher les fins des colonnes sans modifier les photos précédentes.
-            const lastPhotos = tails.filter(entry => entry?.ready);
-            if (lastPhotos.length > 1 && cropLimit > 0) {
-                const lower = Math.max(...lastPhotos.map(entry => entry.top + entry.height * keep));
-                const upper = Math.min(...lastPhotos.map(entry => entry.top + entry.height / keep));
-                const ends = lastPhotos.map(entry => entry.top + entry.height).sort((a, b) => a - b);
-                const median = (ends[Math.floor((ends.length - 1) / 2)] + ends[Math.floor(ends.length / 2)]) / 2;
-                // Si un alignement complet dépasserait la limite, réduire l'écart au maximum.
-                const target = clamp(median, Math.min(lower, upper), Math.max(lower, upper));
-                lastPhotos.forEach(entry => {
-                    entry.renderedHeight = clamp(target - entry.top, entry.height * keep, entry.height / keep);
+            const arrange = order => {
+                const heights = Array(count).fill(padding[2]);
+                const tails = Array(count).fill(null);
+                const placed = order.map(entry => {
+                    const column = heights.indexOf(Math.min(...heights));
+                    const photo = {...entry, column, top: heights[column]};
+                    heights[column] += entry.height + gap;
+                    tails[column] = photo;
+                    return photo;
                 });
+                const lastPhotos = tails.filter(entry => entry?.ready);
+                if (lastPhotos.length > 1 && cropLimit > 0) {
+                    const lower = Math.max(...lastPhotos.map(entry => entry.top + entry.height * keep));
+                    const upper = Math.min(...lastPhotos.map(entry => entry.top + entry.height / keep));
+                    const ends = lastPhotos.map(entry => entry.top + entry.height).sort((a, b) => a - b);
+                    const median = (ends[Math.floor((ends.length - 1) / 2)] + ends[Math.floor(ends.length / 2)]) / 2;
+                    // Si les intervalles ne se croisent pas, combler au mieux les colonnes courtes.
+                    const target = lower > upper ? lower : clamp(median, lower, upper);
+                    lastPhotos.forEach(entry => {
+                        const height = clamp(target - entry.top, entry.height * keep, entry.height / keep);
+                        entry.renderedHeight = Math.abs(height - entry.height) > 0.01 ? height : entry.height;
+                    });
+                }
+                const ends = tails.map(entry => entry ? entry.top + entry.renderedHeight : padding[2]);
+                const bottom = Math.max(...ends);
+                const blank = ends.reduce((sum, end) => sum + bottom - end, 0);
+                return {placed, bottom, blank};
+            };
+
+            let best = arrange(entries);
+            const baseline = best;
+            const tailStart = Math.max(count, entries.length - 6);
+            const prefix = entries.slice(0, tailStart);
+            const tail = entries.slice(tailStart);
+            // Au plus deux échanges voisins dans les six dernières images.
+            // Garder le DOM intact, la première rangée et les années de l'accueil.
+            if (tail.length > 1 && entries.every(entry => entry.ready)) {
+                const seen = new Set();
+                let bestMoves = Infinity;
+                const explore = (order, moves) => {
+                    const key = order.join(',');
+                    if (seen.has(key)) return;
+                    seen.add(key);
+                    if (moves) {
+                        const candidate = arrange([...prefix, ...order.map(index => tail[index])]);
+                        const savesSpace = candidate.blank <= baseline.blank - gap;
+                        const noLonger = candidate.bottom <= baseline.bottom + 0.01;
+                        if (savesSpace && noLonger && (candidate.blank < best.blank - 0.01 ||
+                            (Math.abs(candidate.blank - best.blank) <= 0.01 && moves < bestMoves))) {
+                            best = candidate;
+                            bestMoves = moves;
+                        }
+                    }
+                    if (moves === 2) return;
+                    for (let i = 0; i < order.length - 1; i++) {
+                        const a = tail[order[i]], b = tail[order[i + 1]];
+                        if (gallery.hasAttribute('data-projects') && a.item.dataset.year !== b.item.dataset.year) continue;
+                        const next = [...order];
+                        [next[i], next[i + 1]] = [next[i + 1], next[i]];
+                        explore(next, moves + 1);
+                    }
+                };
+                explore(tail.map((_, index) => index), 0);
             }
-            entries.forEach(entry => {
+
+            best.placed.forEach(entry => {
+                entry.item.style.left = `${padding[0] + entry.column * (width + gap)}px`;
+                entry.item.style.top = `${entry.top}px`;
                 if (!entry.image) return;
                 const cropped = Math.abs(entry.renderedHeight - entry.height) > 0.01;
                 entry.image.classList.toggle('is-cropped', cropped);
@@ -76,8 +121,7 @@
                 }
             });
 
-            const bottom = Math.max(...tails.filter(Boolean).map(entry => entry.top + entry.renderedHeight));
-            gallery.style.height = `${bottom + 4}px`;
+            gallery.style.height = `${best.bottom + padding[3]}px`;
             lastWidth = gallery.clientWidth;
             if (document.documentElement.classList.contains('aos-ready')) window.AOS?.refresh();
         };

@@ -1,85 +1,76 @@
 <!DOCTYPE html>
 <html lang="fr">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, intital-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie-edge">
-		<title>JPOV</title>
-        		
-		<link rel="apple-touch-icon" sizes="180x180" href="favicon/ff/apple-touch-icon.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="favicon/ff/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="favicon/ff/favicon-16x16.png">
-		<link rel="manifest" href="favicon/ff/site.webmanifest">
-		<link rel="mask-icon" href="favicon/ff/safari-pinned-tab.svg" color="#5bbad5">
-		<meta name="msapplication-TileColor" content="#da532c">
-		<meta name="theme-color" content="#ffffff">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JPOV</title>
+        <link rel="apple-touch-icon" sizes="180x180" href="favicon/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" href="favicon/favicon/favicon-96x96.png" sizes="96x96">
+        <link rel="icon" type="image/svg+xml" href="favicon/favicon/favicon.svg">
+        <link rel="shortcut icon" href="favicon/favicon/favicon.ico">
+        <link rel="manifest" href="favicon/favicon/site.webmanifest">
+        <link rel="mask-icon" href="favicon/ff/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="css/styles.css">
-	</head>
-
-		<header class="IBMPlexMono">
-			<nav id="nav">
-				<ul>
-					<li>
-						<a href="index.html">Félix Fritz</a>
-					</li>
-					<li>
-						<a href="contact.html">Contact</a>
-					</li>
-					<li>
-						<a href="studiorama.html">Studiorama Band</a>
-					</li>
-				</ul>
-			</nav>
-		</header>
-
-        <body class="IBMPlexMono">
-            <div class="texte">	
+        <link rel="stylesheet" href="css/styles.css">
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+        <script src="masonry.js" defer></script>
+        <script src="anim.js" defer></script>
+    </head>
+    <body>
+        <header>
+            <nav id="nav" aria-label="Navigation principale">
+                <ul>
+                    <li>
+                        <a href="index.html">félix fritz</a>
+                    </li>
+                    <li>
+                        <a href="contact.html">contact</a>
+                    </li>
+                    <li>
+                        <a href="https://ppdesigner.fr/index.html" target="_blank" rel="noopener">→ ppdesigner.fr</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <div class="texte">
                 <h1>
                     JPOV
                 </h1>
                 <h2>
                     2021
                 </h2>
-                    <p> En&nbspcollaboration avec&nbsp→&nbsp<a href="https://thomasdutoit.com/" target="_BLANK"><i>Thomas&nbspDutoit</i></a><br>
-                        <br>
-                        Identité&nbspvisuelle des&nbspJournées Portes&nbspOuvertes [&nbspVirtuelles&nbsp] de&nbspl'École Supérieure d'Art et&nbspDesign de&nbspSaint-Étienne. Après&nbspavoir retravaillé les&nbsp4&nbsplettres J,&nbspP,&nbspO&nbspet&nbspV en&nbspformes, nous&nbspen&nbspavons produit de&nbspcourtes animations, aux&nbspdifférents formats des&nbsppanneaux publicitaires animés de&nbspla&nbspville de&nbspSaint-Étienne, où&nbsples&nbspformes se&nbspvoient attribuer un&nbsprôle et&nbspcommence à&nbspjouer ensemble, créant de&nbsppetites narrations.
-                    </p>
+                <p> En collaboration avec → <a href="https://thomasdutoit.com/" target="_blank" rel="noopener"><i>Thomas Dutoit</i></a><br>
+                    <br>
+                    Identité visuelle des Journées Portes Ouvertes [ Virtuelles ] de l'École Supérieure d'Art et Design de Saint-Étienne. Après avoir retravaillé les 4 lettres J, P, O et V en formes, nous en avons produit de courtes animations, aux différents formats des panneaux publicitaires animés de la ville de Saint-Étienne, où les formes se voient attribuer un rôle et commence à jouer ensemble, créant de petites narrations.
+                </p>
             </div>
-
             <div class="gallery">
-                <div class="jpov_1" data-aos="fade-up" data-aos-duration="1000">
+                <div class="gallery__item" data-aos="fade-up">
                     <img src="img/jpov.jpg" alt="">
                 </div>
-                <div class="jpov_2" data-aos="fade-up" data-aos-duration="1000">
+                <div class="gallery__item" data-aos="fade-up">
                     <img src="img/jpov2.jpg" alt="">
                 </div>
-                <div class="jpov_3" data-aos="fade-up" data-aos-duration="1000">
+                <div class="gallery__item" data-aos="fade-up">
                     <img src="img/jpov4.jpg" alt="">
                 </div>
-                <div class="jpov_4" data-aos="fade-up" data-aos-duration="1000">
+                <div class="gallery__item" data-aos="fade-up">
                     <img src="img/jpov3.jpg" alt="">
                 </div>
             </div>
-            <video autoplay muted playsinline loop width="100%" data-aos="fade-up" data-aos-duration="1000">
+            <video autoplay muted playsinline loop data-aos="fade-up" class="project-video">
                 <source src="anim_1920x1080.webm">
                 <source src="anim_1920x1080.mp4">
             </video>
-            <video autoplay muted playsinline loop width="100%" data-aos="fade-down" data-aos-duration="1000">
+            <video autoplay muted playsinline loop data-aos="fade-down" class="project-video">
                 <source src="anim_1080X1920.mp4">
                 <source src="anim_1080X1920.webm">
             </video>
-            <div class="btn">
-				<div class="icone">↑</div>
-            </div>
-			<script src="anim.js"></script>
-            <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-            <script>
-                AOS.init();
-              </script>
-            </body>
-
-            <footer>
-                &#169; Félix Fritz - 2024
-            </footer>
-    </html>
+        </main>
+        <button class="btn" type="button" aria-label="Retour en haut de la page">↑</button>
+        <footer> © Félix Fritz - 2024 </footer>
+    </body>
+</html>
