@@ -34,6 +34,7 @@ input, textarea {
     height: 50px;
     text-decoration: none;
     background: white;
+    padding: 20px;
     color: black;
     display: flex;
     text-align: center;
