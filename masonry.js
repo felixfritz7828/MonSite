@@ -45,8 +45,16 @@
                     image.classList.remove('is-cropped');
                     image.style.removeProperty('--crop-height');
                 }
+                const caption = video
+                    ? item.querySelector('.gallery__video-caption')
+                    : null;
+
+                const captionHeight = caption
+                    ? caption.getBoundingClientRect().height
+                    : 0;
+
                 const height = ready
-                    ? width * originalHeight / originalWidth
+                    ? width * originalHeight / originalWidth + captionHeight
                     : item.getBoundingClientRect().height;
                 return {item, image, video, ready, height, renderedHeight: height, top: 0};
             });

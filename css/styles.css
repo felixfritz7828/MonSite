@@ -1,5 +1,8 @@
 :root {
     --image-gap: 6px;
+    --floating-background: rgba(255, 255, 255, 0.8);
+    --text-color: rgba(0, 0, 0, 0.9);
+    --link-color: #000;
 }
 
 * {
@@ -22,6 +25,8 @@ main {
 }
 html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 .form {
     width: 100%;
@@ -29,13 +34,24 @@ html {
 input, textarea {
     width: 100%;
 }
+input,
+textarea,
+select {
+    color: var(--text-color);
+}
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+    color: var(--link-color);
+}
 .btn {
     width: 50px;
     height: 50px;
     text-decoration: none;
-    background: white;
-    color: black;
-    display: flex;
+    background: var(--floating-background);
+    color: var(--link-color);
+    display: none;
     text-align: center;
     font-size: 20px;
     align-items: center;
@@ -45,10 +61,93 @@ input, textarea {
     font-family: inherit;
     line-height: normal;
     position: fixed;
-    bottom: var(--image-gap);
-    right: var(--image-gap);
-    opacity: 0.6;
+    bottom: 6px;
+    right: 12px;
+    z-index: 1001;
+    opacity: 1;
     cursor: pointer;
+}
+.btn.is-visible {
+    display: flex;
+}
+.btn[hidden] {
+    display: none !important;
+}
+
+/* Le fond suit le menu et la flèche ; la bande vide à gauche reste transparente. */
+.project-navigation {
+    position: fixed;
+    right: 12px;
+    bottom: 6px;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    width: 50px;
+    max-width: calc(100% - 24px);
+    border-radius: 10px;
+    background: transparent;
+    color: var(--link-color);
+    pointer-events: none;
+}
+.project-navigation.is-open {
+    width: var(--project-width, 360px);
+}
+.project-navigation[hidden] {
+    display: none !important;
+}
+.project-navigation .btn {
+    position: static;
+    flex-shrink: 0;
+    align-self: flex-end;
+    background: var(--floating-background);
+    border-radius: 10px;
+    opacity: 1;
+    pointer-events: auto;
+}
+.project-navigation.is-open .btn {
+    border-radius: 0 0 10px 10px;
+}
+.project-shortcuts {
+    padding: 6px;
+    background: var(--floating-background);
+    border-radius: 10px 10px 0 10px;
+    pointer-events: auto;
+    font: inherit;
+    font-size: var(--project-font-size, 14px);
+    line-height: 1.4;
+}
+.project-shortcuts[hidden] {
+    display: none !important;
+}
+.project-shortcuts ul {
+    display: grid;
+    grid-template-columns: repeat(var(--project-columns, 1), minmax(0, 1fr));
+    gap: 6px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.project-shortcuts a {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border-radius: 4px;
+    background: transparent;
+    color: var(--link-color);
+    opacity: 1;
+    font: inherit;
+    text-align: left;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+    cursor: pointer;
+}
+.project-shortcuts a:hover {
+    background: rgba(0, 0, 0, 0.06);
+    color: var(--link-color);
+}
+.project-shortcuts a:focus-visible {
+    outline: 2px solid black;
+    outline-offset: -2px;
 }
 @font-face {
     font-family: "IBM Plex Mono italic";
@@ -108,17 +207,28 @@ li {
 }
 a,
 a:visited {
-    color: black;
+    color: var(--link-color);
     text-decoration: none;
 }
 a:hover {
-    color: darkgrey;
+    color: var(--link-color);
 }
 
 /* NAVBAR */
 
 nav {
     font-size: calc(0.4rem + 0.5vw);
+}
+
+/* Taille identique pour la navigation du haut sur toutes les pages. */
+#nav,
+#nav a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: clamp(12px, 1vw, 14px);
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.4;
+    letter-spacing: normal;
 }
 
 nav ul {
@@ -131,6 +241,7 @@ body {
     padding: var(--image-gap);
     font-family: 'IBM Plex Mono', monospace;
     font-size: 1rem;
+    color: var(--text-color);
 }
 .media img,
 .frise img,
@@ -157,6 +268,7 @@ img {
 }
 
 .gallery > * {
+    position: relative;
     flex: none;
     width: calc((100% - (var(--gallery-columns) - 1) * var(--image-gap)) / var(--gallery-columns));
 }
@@ -323,11 +435,244 @@ a:focus-visible,
     padding: var(--image-gap, 6px);
     border: 1px solid black;
     background: white;
-    color: black;
+    color: var(--link-color);
     font: inherit;
     cursor: pointer;
 }
 .sound-player button:focus-visible {
     outline: 2px solid currentColor;
     outline-offset: 3px;
+}
+
+.gallery__caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    padding: 6px;
+    color: var(--text-color);
+    background: var(--floating-background);
+
+    font-size: 12px;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+    pointer-events: none;
+}
+
+.gallery__video-caption {
+    margin: 0;
+    padding: 6px;
+    color: var(--text-color);
+
+    font-size: 12px;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+/* Commande Dosette : même forme et même fond que la flèche. */
+.mini-recording {
+    position: fixed;
+    left: 12px;
+    bottom: 6px;
+    z-index: 1000;
+    display: block;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    border: 0;
+    border-radius: 10px;
+    background: var(--floating-background);
+    color: var(--link-color);
+    font: inherit;
+    font-size: 20px;
+    line-height: normal;
+}
+
+.mini-recording[hidden] {
+    display: none !important;
+}
+
+.mini-recording__status {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.mini-recording button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    border-radius: 10px;
+    background: transparent;
+    color: var(--link-color);
+    opacity: 1;
+    font: inherit;
+    cursor: pointer;
+}
+
+.mini-recording button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
+/* Apparition douce lors du défilement, sans cumuler deux animations sur la flèche. */
+@keyframes floating-control-appear {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.btn.is-visible,
+.project-navigation.is-visible,
+.mini-recording.is-visible {
+    animation: floating-control-appear 300ms ease-out both;
+}
+.project-navigation .btn {
+    animation: none;
+}
+@media (prefers-reduced-motion: reduce) {
+    .btn.is-visible,
+    .project-navigation.is-visible,
+    .mini-recording.is-visible {
+        animation: none;
+    }
+}
+
+/* À ajouter à la fin de css/styles.css ; conserver les autres règles. */
+/* Les médias descendent de 6 px au maximum, sans dépasser l'écart entre voisins. */
+.aos-ready [data-aos].media-reveal:not(.aos-animate) {
+    transform: translateY(calc(-1 * var(--image-gap, 6px)));
+}
+.aos-ready [data-aos].media-reveal.aos-animate {
+    transform: none;
+}
+
+.btn {
+    display: flex;
+}
+
+.btn,
+.project-navigation,
+.mini-recording {
+    animation: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 300ms ease,
+                visibility 0s linear 300ms;
+}
+
+.btn.is-visible,
+.project-navigation.is-visible,
+.mini-recording.is-visible {
+    animation: none;
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+}
+
+/* Sur l'index, le conteneur fait le fondu de la flèche entière. */
+.project-navigation .btn {
+    animation: none;
+    opacity: 1;
+    visibility: inherit;
+    transition: none;
+}
+
+/* La zone retirée à gauche de la flèche reste traversable. */
+.btn:not(.is-visible),
+.project-navigation:not(.is-visible) .btn,
+.project-navigation:not(.is-visible) .project-shortcuts,
+.mini-recording:not(.is-visible) {
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .btn,
+    .project-navigation,
+    .mini-recording {
+        transition: none;
+    }
+}
+
+.btn {
+    display: flex;
+}
+
+.btn,
+.project-navigation,
+.mini-recording {
+    animation: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 300ms ease,
+                visibility 0s linear 300ms;
+}
+
+.btn.is-visible,
+.project-navigation.is-visible,
+.mini-recording.is-visible {
+    animation: none;
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+}
+
+/* Sur l'index, le conteneur fait le fondu de la flèche entière. */
+.project-navigation .btn {
+    animation: none;
+    opacity: 1;
+    visibility: inherit;
+    transition: none;
+}
+
+/* La zone retirée à gauche de la flèche reste traversable. */
+.btn:not(.is-visible),
+.project-navigation:not(.is-visible) .btn,
+.project-navigation:not(.is-visible) .project-shortcuts,
+.mini-recording:not(.is-visible) {
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .btn,
+    .project-navigation,
+    .mini-recording {
+        transition: none;
+    }
+}
+
+/* Liens de texte */
+a:not(.gallery__link) {
+    display: inline-block;
+    transition: transform 180ms ease;
+}
+
+a:not(.gallery__link):hover,
+a:not(.gallery__link):focus-visible {
+    transform: scale(1.04);
+}
+
+/* Titres cliquables sur les images de l’index */
+.gallery_overlay span {
+    display: inline-block;
+    transition: transform 180ms ease;
+}
+
+.gallery__link:hover .gallery_overlay span,
+.gallery__link:focus-visible .gallery_overlay span {
+    transform: scale(1.04);
 }
