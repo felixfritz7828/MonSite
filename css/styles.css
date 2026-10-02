@@ -56,7 +56,7 @@ input[type="reset"] {
     font-size: 20px;
     align-items: center;
     justify-content: center;
-    border-radius: 20%;
+    border-radius: 6px;
     border: 0;
     font-family: inherit;
     line-height: normal;
@@ -84,7 +84,7 @@ input[type="reset"] {
     flex-direction: column;
     width: 50px;
     max-width: calc(100% - 24px);
-    border-radius: 10px;
+    border-radius: 6px;
     background: transparent;
     color: var(--link-color);
     pointer-events: none;
@@ -100,7 +100,7 @@ input[type="reset"] {
     flex-shrink: 0;
     align-self: flex-end;
     background: var(--floating-background);
-    border-radius: 10px;
+    border-radius: 6px;
     opacity: 1;
     pointer-events: auto;
 }
@@ -481,7 +481,7 @@ a:focus-visible,
     height: 50px;
     padding: 0;
     border: 0;
-    border-radius: 10px;
+    border-radius: 6px;
     background: var(--floating-background);
     color: var(--link-color);
     font: inherit;
@@ -512,7 +512,7 @@ a:focus-visible,
     height: 100%;
     padding: 0;
     border: 0;
-    border-radius: 10px;
+    border-radius: 6px;
     background: transparent;
     color: var(--link-color);
     opacity: 1;
