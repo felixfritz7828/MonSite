@@ -25,6 +25,7 @@
         const gallery = isIndex ? document.querySelector('.gallery[data-projects]') : null;
         let menu = null;
         let shell = null;
+        let backdrop = null;
 
         const fitMenu = () => {
             if (!menu || menu.hidden) return;
@@ -47,6 +48,7 @@
             if (!menu) return;
             menu.hidden = true;
             shell.classList.remove('is-open');
+            backdrop.classList.remove('is-visible');
             backToTop.setAttribute('aria-expanded', 'false');
             backToTop.setAttribute('aria-label', 'Ouvrir la liste des projets');
             if (restoreFocus) backToTop.focus({preventScroll: true});
@@ -88,9 +90,17 @@
             backToTop.setAttribute('aria-controls', menu.id);
             backToTop.setAttribute('aria-expanded', 'false');
             backToTop.setAttribute('aria-label', 'Ouvrir la liste des projets');
+            backdrop = document.createElement('div');
+            backdrop.className = 'project-menu-backdrop';
+            backdrop.setAttribute('aria-hidden', 'true');
+            document.body.append(backdrop);
+            // Intercepter le premier clic extérieur avant les liens de la page.
             document.addEventListener('click', event => {
-                if (!menu.hidden && !shell.contains(event.target)) closeMenu();
-            });
+                if (menu.hidden || menu.contains(event.target) || backToTop.contains(event.target)) return;
+                event.preventDefault();
+                event.stopImmediatePropagation();
+                closeMenu(true);
+            }, {capture: true});
             window.addEventListener('resize', fitMenu);
             window.visualViewport?.addEventListener('resize', fitMenu);
             document.fonts?.ready.then(fitMenu);
@@ -111,6 +121,7 @@
             }
             menu.hidden = false;
             shell.classList.add('is-open');
+            backdrop.classList.add('is-visible');
             fitMenu();
             backToTop.setAttribute('aria-expanded', 'true');
             backToTop.setAttribute('aria-label', 'Remonter en haut de la page');

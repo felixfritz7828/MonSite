@@ -107,6 +107,28 @@ input[type="reset"] {
 .project-navigation.is-open .btn {
     border-radius: 0 0 6px 6px;
 }
+.project-menu-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.18);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 200ms ease, visibility 0s linear 200ms;
+}
+.project-menu-backdrop.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition-delay: 0s;
+}
+@media (prefers-reduced-motion: reduce) {
+    .project-menu-backdrop {
+        transition: none;
+    }
+}
+
 .project-shortcuts {
     padding: 6px;
     background: var(--floating-background);
@@ -349,6 +371,7 @@ img {
 
 footer {
     font-size: calc(0.3rem + 0.4vw);
+    text-align: center;
 }
 
 /* Largeurs qui étaient répétées dans les attributs HTML. */
