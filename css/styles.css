@@ -179,7 +179,7 @@ img {
 
 /* Ratio de secours avant les métadonnées, puis proportions réelles de la vidéo. */
 .gallery video {
-    aspect-ratio: var(--video-ratio, 16 / 9);
+    aspect-ratio: var(--video-ratio, auto 16 / 9);
     object-fit: contain;
 }
 
@@ -306,4 +306,28 @@ a:focus-visible,
 .carousel::-webkit-scrollbar-thumb {
     background: #333;
     border-radius: 10px;
+}
+
+/* Lecteur de Dosette : même espacement que le reste de la page. */
+.sound-player {
+    display: flex;
+    flex-direction: column;
+    gap: var(--image-gap, 6px);
+}
+.sound-player audio {
+    display: block;
+    width: 100%;
+}
+.sound-player button {
+    align-self: flex-start;
+    padding: var(--image-gap, 6px);
+    border: 1px solid black;
+    background: white;
+    color: black;
+    font: inherit;
+    cursor: pointer;
+}
+.sound-player button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
 }

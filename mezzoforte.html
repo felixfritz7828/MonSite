@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Félix Fritz</title>
+        <title>Mezzo Forte — Félix Fritz</title>
         <link rel="apple-touch-icon" sizes="180x180" href="favicon/favicon/apple-touch-icon.png">
         <link rel="icon" type="image/png" href="favicon/favicon/favicon-96x96.png" sizes="96x96">
         <link rel="icon" type="image/svg+xml" href="favicon/favicon/favicon.svg">
@@ -57,16 +57,17 @@
                     → conception du filtre passif 2 voies avec les mesures effectuées<br>
                     → affinement des réglages sonores au sein de l'exposition
                 </p>
-            </div>
+            
             <section class="sound-player" aria-label="Enregistrement sonore">
-                <!-- Remplacer ce chemin par celui de votre enregistrement. -->
-                <audio id="page-recording" controls preload="metadata" aria-label="Enregistrement sonore de la page">
+                <audio id="page-recording" data-recording-title="Dosette" controls preload="metadata" aria-label="Enregistrement sonore de la page">
                     <source src="media/Dosette1min.mp3" type="audio/mpeg">
                     Votre navigateur ne peut pas lire cet enregistrement.
                 </audio>
-                <button id="start-recording" type="button" hidden aria-controls="page-recording">Lancer l’enregistrement</button>
-                <p id="recording-status" role="status" aria-live="polite">Utilisez le lecteur pour écouter <i>Dosette</i>.</p>
+                <p id="recording-status" role="status" aria-live="polite">Dosette en pause</p>
+                <button id="start-recording" type="button" hidden aria-controls="page-recording">Écouter Dosette</button>
+                <p id="recording-help" role="status" aria-live="polite" hidden></p>
             </section>
+            </div>
 
             <div class="gallery">
                 <div class="gallery__item" data-aos="fade-up">
@@ -118,31 +119,35 @@
                     <img src="img/mezzoforte/17.jpg" alt="">
                 </div>
                 <div class="gallery__item" data-aos="fade-up">
-                    <video controls playsinline preload="metadata">
+                    <video controls playsinline preload="metadata"
+                           poster="img/mezzoforte/jb_simon.jpg">
                         <source src="img/mezzoforte/jb_simon.mp4" type="video/mp4">
                         Votre navigateur ne peut pas lire cette vidéo.
                     </video>
                 </div>
                 <div class="gallery__item" data-aos="fade-up">
-                    <video controls playsinline preload="metadata">
+                    <video controls playsinline preload="metadata"
+                           poster="img/mezzoforte/prise_son_1.jpg">
                         <source src="img/mezzoforte/prise_son_1.mp4" type="video/mp4">
                         Votre navigateur ne peut pas lire cette vidéo.
                     </video>
                 </div>
                 <div class="gallery__item" data-aos="fade-up">
-                    <video controls playsinline preload="metadata">
+                    <video controls playsinline preload="metadata"
+                           poster="img/mezzoforte/prise_son_2.jpg">
                         <source src="img/mezzoforte/prise_son_2.mp4" type="video/mp4">
                         Votre navigateur ne peut pas lire cette vidéo.
                     </video>
                 </div>
                 <div class="gallery__item" data-aos="fade-up">
-                    <video controls playsinline preload="metadata">
-                        <source src="img/mezzoforte/techno.mp4" type="video/mp4">
+                    <video controls playsinline preload="metadata"
+                           poster="img/mezzoforte/tekno.jpg">
+                        <source src="img/mezzoforte/tekno.mp4" type="video/mp4">
                         Votre navigateur ne peut pas lire cette vidéo.
                     </video>
                 </div>
             </div>
-            </main>
+        </main>
         <button class="btn" type="button" aria-label="Retour en haut de la page">↑</button>
         <footer> © Félix Fritz - 2024 </footer>
     </body>

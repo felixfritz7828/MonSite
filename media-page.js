@@ -4,15 +4,26 @@
     const videos = Array.from(document.querySelectorAll('video'));
     const button = document.querySelector('#start-recording');
     const status = document.querySelector('#recording-status');
+    const help = document.querySelector('#recording-help');
+    const title = recording.dataset?.recordingTitle || 'Dosette';
     let resumeAfterVideo = false;
     let resumeAfterNavigation = false;
     let leavingPage = false;
     let automaticAttempts = 0;
 
     const videoIsPlaying = () => videos.some(video => !video.paused && !video.ended);
-    const inform = (message, showButton = false) => {
-        if (status) status.textContent = message;
-        if (button) button.hidden = !showButton;
+    const inform = (message = '') => {
+        const paused = recording.paused || recording.ended;
+        if (status) status.textContent = `${title} en ${paused ? 'pause' : 'cours'}`;
+        if (button) {
+            button.hidden = !paused || videoIsPlaying();
+            button.textContent = recording.currentTime > 0 && !recording.ended
+                ? `Reprendre ${title}` : `Écouter ${title}`;
+        }
+        if (help) {
+            help.textContent = message;
+            help.hidden = !message;
+        }
     };
 
     const startRecording = async (automatic = true) => {
@@ -23,9 +34,9 @@
         } catch (error) {
             if (leavingPage || videoIsPlaying() || error.name === 'AbortError') return;
             if (error.name === 'NotAllowedError') {
-                inform('Cliquez sur « Lancer l’enregistrement » pour activer le son.', true);
+                inform("Utilisez le bouton ou le lecteur pour activer le son.");
             } else {
-                inform('L’enregistrement ne peut pas être lu. Vérifiez le fichier audio.');
+                inform('L’enregistrement est indisponible pour le moment.');
             }
         } finally {
             if (automatic) automaticAttempts--;
@@ -46,17 +57,15 @@
         }
         resumeAfterVideo = false;
         videos.forEach(video => video.pause());
-        inform('Enregistrement en cours.');
+        inform();
     });
     recording.addEventListener('pause', () => {
         if (leavingPage || !recording.paused) return;
-        inform(videoIsPlaying()
-            ? 'Enregistrement en pause pendant la vidéo.'
-            : recording.ended ? 'Enregistrement terminé.' : 'Enregistrement en pause.');
+        inform(recording.ended ? 'L’enregistrement est terminé.' : '');
     });
-    recording.addEventListener('ended', () => inform('Enregistrement terminé.'));
+    recording.addEventListener('ended', () => inform('L’enregistrement est terminé.'));
     recording.addEventListener('error', () => {
-        if (!leavingPage) inform('L’enregistrement ne peut pas être lu. Vérifiez le fichier audio.');
+        if (!leavingPage) inform('L’enregistrement est indisponible pour le moment.');
     });
 
     videos.forEach(video => {
@@ -70,7 +79,7 @@
             resumeAfterVideo = resumeAfterVideo || (!recording.paused && !recording.ended);
             recording.pause();
             videos.forEach(other => { if (other !== video) other.pause(); });
-            inform('Enregistrement en pause pendant la vidéo.');
+            inform();
         });
         const resumeRecording = () => {
             if (leavingPage || videoIsPlaying() || !resumeAfterVideo) return;
@@ -103,5 +112,6 @@
     });
 
     // Le navigateur reste maître de l'autorisation de lecture automatique avec son.
+    inform();
     startRecording();
 })();
