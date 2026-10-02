@@ -105,12 +105,12 @@ input[type="reset"] {
     pointer-events: auto;
 }
 .project-navigation.is-open .btn {
-    border-radius: 0 0 10px 10px;
+    border-radius: 0 0 6px 6px;
 }
 .project-shortcuts {
     padding: 6px;
     background: var(--floating-background);
-    border-radius: 10px 10px 0 10px;
+    border-radius: 6px 6px 0 6px;
     pointer-events: auto;
     font: inherit;
     font-size: var(--project-font-size, 14px);
